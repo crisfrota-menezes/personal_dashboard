@@ -4,7 +4,33 @@
 }
 
 body {
-    background-color: black;
-    color: white;
+    width: 80vw;
+    max-height: 80vh;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(31, 36, 48);
+    color: rgb(191, 200, 224);
 }
 
+.greetings {
+    background-color: rgb(191, 200, 224);
+    color: rgb(31, 36, 48);
+}
+
+.link-section {
+    background-color: rgb(191, 200, 224);
+    color: rgb(31, 36, 48);
+}
+
+a {
+    color: rgb(31, 36, 48);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(74, 105, 21);
+}
+
+a:active {
+    color: rgb(143, 184, 63);
+}

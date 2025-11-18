@@ -1,24 +1,25 @@
-const header = document.querySelector('.greeting');
-const clock = document.querySelector('.clock');
+const greetingMessageEl = document.getElementById("message");
+const clockEl = document.getElementById("hour");
 
-function showGreeting()
-{
-    const hour = new Date().getHours();
+function refreshPanel() {
+    const date = new Date();
 
-    if (hour > 5 && hour < 12)
-        header.textContent = "Bom Dia Chefe!";
-    if (hour > 13 && hour < 18)
-        header.textContent = "Boa Tarde Chefe!";
-    else
-        header.textContent = "Boa Noite Chefe!";
+    if (clockEl) {
+        clockEl.textContent = "Agora são: " + date.toLocaleTimeString("pt-BR");
+    }
+
+    const now = date.getHours();
+
+    if (greetingMessageEl) {
+        if (now >= 5 && now < 12) {
+            greetingMessageEl.textContent = "Bom Dia Chefe!";
+        } else if (now >= 12 && now < 18) {
+            greetingMessageEl.textContent = "Boa Tarde Chefe!";
+        } else {
+            greetingMessageEl.textContent = "Boa Noite Chefe!";
+        }
+    }
 }
 
-function showClock()
-{
-    const now = new Date().toLocaleTimeString();
-
-    clock.textContent = "Agora são: " + now;
-}
-
-setInterval(showClock, 1000);
-showGreeting();
+refreshPanel();
+setInterval(refreshPanel, 1000);
