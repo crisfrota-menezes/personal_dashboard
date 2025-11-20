@@ -1,7 +1,21 @@
 const sidebar = document.querySelector(".sidebar")
 const sidebarToggleButton = document.querySelector(".sidebar-toggle")
+const themeToggleButton = document.querySelector(".theme-toggle")
 const greetingMessageEl = document.getElementById("message");
 const clockEl = document.getElementById("hour");
+const themeIcon = themeToggleButton.querySelector(".theme-icon");
+
+const updateThemeIcon = () => {
+    const isDark = document.body.classList.contains("dark-theme");
+    themeIcon.textContent = sidebar.classList.contains("collapsed") ? (isDark ? "light_mode" : "dark_mode") : "dark_mode";
+}
+
+const savedTheme = localStorage.getItem("theme");
+const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+const shouldUseDark = savedTheme === "dark" || (savedTheme === null && systemPrefersDark);
+
+document.body.classList.toggle("dark-theme", shouldUseDark);
+updateThemeIcon();
 
 function refreshPanel() {
     const date = new Date();
@@ -28,4 +42,11 @@ setInterval(refreshPanel, 1000);
 
 sidebarToggleButton.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
+    updateThemeIcon();
+});
+
+themeToggleButton.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark-theme");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    updateThemeIcon();
 });
