@@ -1,3 +1,5 @@
+const sidebar = document.querySelector(".sidebar")
+const sidebarToggleButton = document.querySelector(".sidebar-toggle")
 const greetingMessageEl = document.getElementById("message");
 const clockEl = document.getElementById("hour");
 
@@ -23,3 +25,7 @@ function refreshPanel() {
 
 refreshPanel();
 setInterval(refreshPanel, 1000);
+
+sidebarToggleButton.addEventListener("click", () => {
+    sidebar.classList.toggle("collapsed");
+});
