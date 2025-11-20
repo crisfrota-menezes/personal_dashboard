@@ -47,7 +47,7 @@ body {
   flex-shrink: 0;
   background: var(--color-bg-secondary);
   box-shadow: 0 3px 9px var(--color-shadow-primary);
-  transition: width 0.4s ease;
+  transition: width 0.4s ease, transform 0.4s ease;
   z-index: 100;
 }
 
@@ -158,12 +158,18 @@ body {
 }
 
 .sidebar .sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center; 
   padding: 20px 18px;
   white-space: nowrap;
   border-top: 1px solid var(--color-border-hr);
 }
 
 .sidebar-footer .theme-toggle {
+  right: 0;
   width: 100%;
   min-height: 48px;
   border: none;
@@ -281,6 +287,59 @@ body.dark-theme .theme-toggle-indicator {
   color: var(--color-active-primary);
 }
 
+#weather-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+#weather-section h2 {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border-hr);
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+/* Destaque para o clima atual */
+.actual-weather {
+  font-size: 1.5rem; /* Texto grande */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-primary);
+}
+
+.actual-weather .material-symbols-outlined {
+  font-size: 2rem;
+  color: var(--color-text-hover); /* Azul/Destaque */
+}
+
+/* Estilo das próximas horas */
+.time-weather-one,
+.time-weather-two,
+.time-weather-three {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Hora na esquerda, Clima na direita */
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  background: var(--color-bg-primary); /* Fundo sutil para separar */
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+}
+
+/* Ícones menores para as próximas horas */
+.time-weather-one span,
+.time-weather-two span,
+.time-weather-three span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Footer Style Padrão */
 footer {
   margin-top: auto;
@@ -288,4 +347,47 @@ footer {
   text-align: center;
   font-size: 0.875rem;
   color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  /* Força a sidebar para o modo colapsado  */
+  .sidebar {
+    width: 90px;
+  }
+
+  .sidebar .sidebar-header .profile-picture {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sidebar .sidebar-header .sidebar-toggle {
+    height: 48px;
+    width: 50px;
+    transform: translateX(-2px);
+  }
+
+  .sidebar .sidebar-header .sidebar-toggle span {
+    transform: rotate(180deg);
+  }
+
+  .sidebar .sidebar-content .menu-link span {
+    margin-left: 15px;
+  }
+
+  .sidebar .sidebar-content .menu-link .menu-label {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sidebar .sidebar-footer .theme-toggle :where(.theme-text, .theme-toggle-track) {
+    width: 0;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar .sidebar-footer .theme-toggle {
+    width: 0;
+    opacity: 0;
+    transition: all 0.2s ease;  
+  }
 }
