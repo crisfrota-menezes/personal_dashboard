@@ -1,6 +1,6 @@
-const sidebar = document.querySelector(".sidebar")
-const sidebarToggleButton = document.querySelector(".sidebar-toggle")
-const themeToggleButton = document.querySelector(".theme-toggle")
+const sidebar = document.querySelector(".sidebar");
+const sidebarToggleButton = document.querySelector(".sidebar-toggle");
+const themeToggleButton = document.querySelector(".theme-toggle");
 const greetingMessageEl = document.getElementById("message");
 const clockEl = document.getElementById("hour");
 const themeIcon = themeToggleButton.querySelector(".theme-icon");
@@ -16,6 +16,18 @@ const shouldUseDark = savedTheme === "dark" || (savedTheme === null && systemPre
 
 document.body.classList.toggle("dark-theme", shouldUseDark);
 updateThemeIcon();
+
+const activePage = window.location.pathname.split("/").pop();
+
+const menuLinks = document.querySelectorAll(".menu-link");
+menuLinks.forEach(link => {
+    const linkPage = link.getAttribute("href");
+    if (linkPage === activePage) {
+        link.classList.add("active");
+    } else {
+        link.classList.remove("active");
+    }
+});
 
 function refreshPanel() {
     const date = new Date();
