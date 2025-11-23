@@ -92,12 +92,13 @@ async function updateWeather() {
                 const isDaySimple = (targetHour % 24) > 6 && (targetHour % 24) < 18 ? 1 : 0;
                 const miniIcon = getWeatherIcon(code, isDaySimple);
 
+                // ATUALIZADO: HTML estruturado para o novo layout vertical (Card)
                 element.innerHTML = `
-                    <span>${targetHour % 24}:00</span>
-                    <span>
-                        ${temp}°C 
-                        <span class="material-symbols-outlined" style="font-size: 1.2rem">${miniIcon}</span>
-                    </span>
+                    <span class="hour-label">${targetHour % 24}:00</span>
+                    <div class="temp-label">
+                        <span class="material-symbols-outlined" style="font-size: 1.4rem">${miniIcon}</span>
+                        <span>${temp}°</span>
+                    </div>
                 `;
             }
         });

@@ -317,27 +317,51 @@ body.dark-theme .theme-toggle-indicator {
   color: var(--color-text-hover); /* Azul/Destaque */
 }
 
-/* Estilo das próximas horas */
-.time-weather-one,
-.time-weather-two,
-.time-weather-three {
+/* Container que segura as 3 caixinhas lado a lado */
+.next-hours-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Hora na esquerda, Clima na direita */
-  font-size: 0.95rem;
-  padding: 8px 12px;
-  background: var(--color-bg-primary); /* Fundo sutil para separar */
-  border-radius: 6px;
-  color: var(--color-text-secondary);
+  justify-content: space-between; /* Espalha igualmente */
+  gap: 10px; /* Espaço entre os cards */
+  margin-top: 15px;
 }
 
-/* Ícones menores para as próximas horas */
-.time-weather-one span,
-.time-weather-two span,
-.time-weather-three span {
+/* Estilo de cada cartão de hora (Substitui o estilo antigo .time-weather-one...) */
+.forecast-card {
+  background: var(--color-bg-primary);
+  border-radius: 12px;
+  padding: 10px 5px;
+  flex: 1; /* Faz as 3 ocuparem a mesma largura exata */
+  display: flex;
+  flex-direction: column; /* Coloca a Hora EM CIMA da Temp */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  color: var(--color-text-secondary);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-3px);
+  background: var(--color-hover-primary);
+  color: var(--color-text-primary);
+}
+
+/* Estilo para o texto da hora dentro do card */
+.forecast-card .hour-label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+/* Estilo para o ícone e temperatura */
+.forecast-card .temp-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 /* Footer Style Padrão */
