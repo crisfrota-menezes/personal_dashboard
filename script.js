@@ -112,6 +112,75 @@ async function updateWeather() {
 updateWeather();
 setInterval(updateWeather, 3600000);
 
+function setupProductivityWidget() {
+    const dateEl = document.getElementById("current-date");
+    const weekDayEl = document.getElementById("current-week-day");
+    
+    const now = new Date();
+
+    const dateOptions = { day: 'numeric', month: 'long' };
+    const weekOptions = { weekday: 'long' };
+
+    dateEl.textContent = now.toLocaleDateString('pt-BR', dateOptions);
+    weekDayEl.textContent = now.toLocaleDateString('pt-BR', weekOptions);
+
+    const focusInput = document.getElementById("focus-input");
+    const savedFocus = localStorage.getItem("jarvis_focus");
+
+    if (savedFocus) {
+        focusInput.value = savedFocus;
+    }
+
+    focusInput.addEventListener("input", () => {
+        localStorage.setItem("jarvis_focus", focusInput.value);
+    });
+
+    const eventsListEl = document.getElementById("events-list");
+    
+    const myEvents = [
+        { date: "25/12", name: "Natal" },
+        { date: "31/12", name: "Ano Novo" },
+        { date: "15/01", name: "Início das Aulas" }
+    ];
+
+    const nextEvents = myEvents.slice(0, 2);
+
+    eventsListEl.innerHTML = nextEvents.map(event => `
+        <li>
+            <span>${event.name}</span>
+            <span class="event-date">${event.date}</span>
+        </li>
+    `).join('');
+}
+
+setupProductivityWidget();
+
+function setupNotesWidget() {
+    const notesInput = document.getElementById("jarvis-notes");
+    const clearBtn = document.getElementById("clear-notes");
+    const STORAGE_KEY = "jarvis_quick_notes";
+
+    const savedNotes = localStorage.getItem(STORAGE_KEY);
+    if (savedNotes) {
+        notesInput.value = savedNotes;
+    }
+
+    notesInput.addEventListener("input", () => {
+        localStorage.setItem(STORAGE_KEY, notesInput.value);
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+            if(confirm("Deseja apagar todas as notas?")) {
+                notesInput.value = "";
+                localStorage.removeItem(STORAGE_KEY);
+            }
+        });
+    }
+}
+
+setupNotesWidget();
+
 function refreshPanel() {
     const date = new Date();
 

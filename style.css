@@ -235,22 +235,289 @@ body.dark-theme .theme-toggle-indicator {
 }
 
 .main-container {
+  display: flex;
   flex: 1;
   min-width: 0;
-  display: flex;
   flex-direction: column;
   padding: 40px;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#message {
+  margin-bottom: 25px;
+  font-size: 2rem;
 }
 
 .main-content {
-  gap: 15px;
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 3px 9px var(--color-shadow-primary);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.widget {
   background: var(--color-bg-secondary);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px var(--color-shadow-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 180px;
+}
+
+#clock-section {
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#clock-section h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.actual-weather {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-primary);
+  margin: 10px 0;
+}
+
+.actual-weather .material-symbols-outlined {
+  font-size: 2rem;
+  color: var(--color-text-hover);
+}
+
+.next-hours-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.forecast-card {
+  background: var(--color-bg-primary);
+  border-radius: 12px;
+  padding: 10px 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  color: var(--color-text-secondary);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-3px);
+  background: var(--color-hover-primary);
+  color: var(--color-text-primary);
+}
+
+.forecast-card .hour-label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.forecast-card .temp-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+#productivity-section {
+  gap: 15px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-border-hr);
+}
+
+.calendar-header h2 {
+  font-size: 1.4rem;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.calendar-header p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+}
+
+.upcoming-events h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+}
+
+.upcoming-events ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upcoming-events li {
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: space-between;
+  background: var(--color-bg-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.upcoming-events li span.event-date {
+  font-weight: bold;
+  color: var(--color-text-hover);
+}
+
+.focus-container label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#focus-input {
+  width: 100%;
+  padding: 12px 15px;
+  padding-right: 40px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+#focus-input:focus {
+  background: var(--color-hover-primary);
+  border-color: var(--color-text-hover);
+  box-shadow: 0 0 0 3px var(--color-shadow-primary);
+}
+
+#focus-input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+.save-icon {
+  position: absolute;
+  right: 10px;
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#focus-input:focus + .save-icon,
+#focus-input:not(:placeholder-shown) + .save-icon {
+  opacity: 1;
+  color: var(--color-text-hover);
+}
+
+#notes-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 250px; 
+}
+
+.notes-wrapper {
+  flex: 1;
+  display: flex;
+  margin-top: 10px;
+}
+
+#jarvis-notes {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: 'Consolas', 'Monaco', monospace; 
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+#jarvis-notes::-webkit-scrollbar {
+  width: 6px;
+}
+#jarvis-notes::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+}
+#jarvis-notes::-webkit-scrollbar-thumb {
+  background: var(--color-border-hr);
+  border-radius: 3px;
+}
+
+#clear-notes:hover {
+  color: #ef4444;
+  transition: color 0.3s ease;
+}
+
+.animation-footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 20px;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.running-track {
+  width: 100%;
+  height: 100px;
+  
+  background-image: url('sonic.gif'); 
+  
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: contain;
+
+  animation: infiniteRun 8s linear infinite; 
+}
+
+/* Define o movimento */
+@keyframes infiniteRun {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 100%; 
+  }
 }
 
 .main-content .link-list {
@@ -287,90 +554,10 @@ body.dark-theme .theme-toggle-indicator {
   color: var(--color-active-primary);
 }
 
-#weather-section {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transition: all 0.3s ease;
-}
-
-#weather-section h2 {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-  border-bottom: 1px solid var(--color-border-hr);
-  padding-bottom: 10px;
-  margin-bottom: 5px;
-}
-
-/* Destaque para o clima atual */
-.actual-weather {
-  font-size: 1.5rem; /* Texto grande */
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.main-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
   color: var(--color-text-primary);
-}
-
-.actual-weather .material-symbols-outlined {
-  font-size: 2rem;
-  color: var(--color-text-hover); /* Azul/Destaque */
-}
-
-/* Container que segura as 3 caixinhas lado a lado */
-.next-hours-container {
-  display: flex;
-  justify-content: space-between; /* Espalha igualmente */
-  gap: 10px; /* Espaço entre os cards */
-  margin-top: 15px;
-}
-
-/* Estilo de cada cartão de hora (Substitui o estilo antigo .time-weather-one...) */
-.forecast-card {
-  background: var(--color-bg-primary);
-  border-radius: 12px;
-  padding: 10px 5px;
-  flex: 1; /* Faz as 3 ocuparem a mesma largura exata */
-  display: flex;
-  flex-direction: column; /* Coloca a Hora EM CIMA da Temp */
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 5px;
-  color: var(--color-text-secondary);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.forecast-card:hover {
-  transform: translateY(-3px);
-  background: var(--color-hover-primary);
-  color: var(--color-text-primary);
-}
-
-/* Estilo para o texto da hora dentro do card */
-.forecast-card .hour-label {
-  font-size: 0.85rem;
-  font-weight: bold;
-  opacity: 0.8;
-}
-
-/* Estilo para o ícone e temperatura */
-.forecast-card .temp-label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-/* Footer Style Padrão */
-footer {
-  margin-top: auto;
-  padding: 20px;
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
 }
 
 @media (max-width: 768px) {
@@ -413,5 +600,11 @@ footer {
     width: 0;
     opacity: 0;
     transition: all 0.2s ease;  
+  }
+}
+
+@media (min-width: 1024px) {
+  .widget.wide {
+    grid-column: span 2;
   }
 }

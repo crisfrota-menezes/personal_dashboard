@@ -75,23 +75,65 @@
     <div class="main-container">
         <h1 id="message">Carregando...</h1>
         
-        <section class="main-content" id="clock-section">
-            <h2 id="hour">00:00:00</h2>
-        </section>
+        <div class="main-content">
+            <section class="widget" id="clock-section">
+                <h2 id="hour">00:00:00</h2>
+            </section>
 
-        <section class="main-content" id="weather-section">
-            <h2>Carregando...</h2>
-            <p class="actual-weather">Carregando...</p>
-            <div class="next-hours-container">
-                <p class="time-weather-one forecast-card">Carregando...</p>
-                <p class="time-weather-two forecast-card">Carregando...</p>
-                <p class="time-weather-three forecast-card">Carregando...</p>
+            <section class="widget wide" id="weather-section">
+                <h2>Carregando...</h2>
+                <p class="actual-weather">Carregando...</p>
+                <div class="next-hours-container">
+                    <p class="time-weather-one forecast-card">Carregando...</p>
+                    <p class="time-weather-two forecast-card">Carregando...</p>
+                    <p class="time-weather-three forecast-card">Carregando...</p>
+                </div>
+            </section>
+
+            <section class="widget wide" id="productivity-section">
+                <div class="calendar-header">
+                    <span class="material-symbols-outlined widget-icon">calendar_month</span>
+                    <div>
+                        <h2 id="current-date">Carregando data...</h2>
+                        <p id="current-week-day">...</p>
+                    </div>
+                </div>
+
+                <div class="upcoming-events">
+                    <h3>Próximos Eventos</h3>
+                    <ul id="events-list"></ul>
+                </div>
+
+                <div class="focus-container">
+                    <label for="focus-input">Foco Principal de Hoje:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="focus-input" placeholder="Digite sua meta principal..." autocomplete="off">
+                        <span class="material-symbols-outlined save-icon">save</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="widget" id="notes-section">
+                <div class="widget-header">
+                    <h2>Jarvis Memo</h2>
+                    <span class="material-symbols-outlined" id="clear-notes" style="cursor: pointer;" title="Limpar notas">delete</span>
+                </div>
+                
+                <div class="notes-wrapper">
+                    <textarea id="jarvis-notes" placeholder="Digite suas anotações rápidas aqui..." spellcheck="false"></textarea>
+                </div>
+            </section>
+        </div>
+
+        <div class="main-container">
+            <div class="main-content">
+                </div>
+
+            <div class="animation-footer">
+                <div class="running-track"></div>
+                    
             </div>
-        </section>
-    
-        <footer>
-            <p>&copy; 2025 Jarvis. Todos os direitos reservados.</p>
-        </footer>
+        </div>
     </div>
 
     <script src="script.js"></script>
