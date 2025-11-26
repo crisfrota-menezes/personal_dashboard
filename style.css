@@ -124,6 +124,10 @@ body {
   list-style: none;
 }
 
+.widget.wide {
+  grid-column: span 2;
+}
+
 .menu-list .menu-link {
   text-decoration: none;
   display: flex;
@@ -600,11 +604,5 @@ body.dark-theme .theme-toggle-indicator {
     width: 0;
     opacity: 0;
     transition: all 0.2s ease;  
-  }
-}
-
-@media (min-width: 1024px) {
-  .widget.wide {
-    grid-column: span 2;
   }
 }
