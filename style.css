@@ -37,7 +37,7 @@ body:not(.dark-theme) img[src*="https://github-readme-streak-stats.herokuapp.com
   opacity: 0.9;
 }
 
-body.dark-theme img[src*="imagens/qr_code.png"] {
+body.dark-theme img[src*="../imagens/qr_code.png"] {
   mix-blend-mode: normal !important; /* Desativa a multiplicação */
   filter: invert(1) hue-rotate(180deg); /* Inverte as cores (preto vira branco) */
   opacity: 0.9;
