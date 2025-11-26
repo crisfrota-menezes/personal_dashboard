@@ -31,6 +31,18 @@ body.dark-theme {
   --color-border-hr: #434c5e;
 }
 
+body:not(.dark-theme) img[src*="https://github-readme-streak-stats.herokuapp.com/?user=crisfrota-menezes&theme=dark&hide_border=true&background=00000000"] {
+  mix-blend-mode: normal !important; /* Desativa a multiplicação */
+  filter: invert(1) hue-rotate(180deg); /* Inverte as cores (preto vira branco) */
+  opacity: 0.9;
+}
+
+body.dark-theme img[src*="imagens/qr_code.png"] {
+  mix-blend-mode: normal !important; /* Desativa a multiplicação */
+  filter: invert(1) hue-rotate(180deg); /* Inverte as cores (preto vira branco) */
+  opacity: 0.9;
+}
+
 body {
   min-height: 100vh;
   background: var(--color-bg-primary);
@@ -272,7 +284,7 @@ body.dark-theme .theme-toggle-indicator {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 180px;
+  min-height: 280px;
 }
 
 #clock-section {
@@ -306,7 +318,7 @@ body.dark-theme .theme-toggle-indicator {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  margin-top: auto;
+  margin: auto 0;
 }
 
 .forecast-card {
@@ -495,8 +507,6 @@ body.dark-theme .theme-toggle-indicator {
 
 .animation-footer {
   width: 100%;
-  margin-top: auto;
-  padding-top: 20px;
   overflow: hidden;
   opacity: 0.8;
 }
@@ -524,7 +534,13 @@ body.dark-theme .theme-toggle-indicator {
   }
 }
 
+#social-links {
+  height: fit-content;
+}
+
 .main-content .link-list {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
   list-style: none;
   padding-left: 8px;
   margin: 0;
@@ -564,7 +580,62 @@ body.dark-theme .theme-toggle-indicator {
   color: var(--color-text-primary);
 }
 
-@media (max-width: 768px) {
+#github-stats {
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+}
+
+.github-graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  padding: 10px 0;
+}
+
+.github-graph-container img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#qr-code-section {
+  grid-row: 1 / 3;
+  grid-column: 2 / 2;
+}
+
+.qr-code-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.qr-code-container img {
+  width: 450px;
+  height: 450px;
+  border-radius: 8px;
+  mix-blend-mode: multiply;
+  transition: all 0.3s ease;
+}
+
+.qr-code-container p {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 1300px) {
+  .qr-code-container img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1000px) {
   /* Força a sidebar para o modo colapsado  */
   .sidebar {
     width: 90px;
@@ -604,5 +675,10 @@ body.dark-theme .theme-toggle-indicator {
     width: 0;
     opacity: 0;
     transition: all 0.2s ease;  
+  }
+
+  .qr-code-container img {
+    width: 200px;
+    height: 200px;
   }
 }
