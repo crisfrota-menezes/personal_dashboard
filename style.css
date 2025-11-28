@@ -628,6 +628,23 @@ body.dark-theme .theme-toggle-indicator {
   opacity: 0.7;
 }
 
+#widget-brasileirao {
+  padding: 15px;
+  border-radius: 8px;
+  width: 300px;
+  font-family: sans-serif;
+}
+
+#widget-brasileirao ul {
+  list-style: none;
+}
+
+.match-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 1300px) {
   .qr-code-container img {
     width: 300px;
