@@ -47,8 +47,6 @@ updateThemeIcon();
 
 const activePage = window.location.pathname.split("/").pop();
 
-console.log(activePage);
-
 const menuLinks = document.querySelectorAll(".menu-link");
 menuLinks.forEach(link => {
     const linkPage = link.getAttribute("href");
@@ -60,7 +58,8 @@ menuLinks.forEach(link => {
 });
 
 sidebarToggleButton.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
+    const isCollapsed = sidebar.classList.toggle("collapsed");
+    localStorage.setItem("sidebarCollapsed", isCollapsed);
     updateThemeIcon();
 });
 
@@ -69,3 +68,9 @@ themeToggleButton.addEventListener("click", () => {
     localStorage.setItem("theme", isDark ? "dark" : "light");
     updateThemeIcon();
 });
+
+function loadCollapsed() {
+    if (localStorage.getItem("sidebarCollapsed") == "true") {
+        sidebar.classList.add("collapsed");
+    }
+}
