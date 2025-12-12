@@ -47,6 +47,8 @@ updateThemeIcon();
 
 const activePage = window.location.pathname.split("/").pop();
 
+console.log(activePage);
+
 const menuLinks = document.querySelectorAll(".menu-link");
 menuLinks.forEach(link => {
     const linkPage = link.getAttribute("href");
